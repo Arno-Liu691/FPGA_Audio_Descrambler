@@ -1,0 +1,991 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2022  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 224 128)
+	(text "New_filter" (rect 5 0 45 12)(font "Arial" ))
+	(text "inst" (rect 8 96 20 108)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk" (rect 0 0 10 12)(font "Arial" ))
+		(text "clk" (rect 21 27 31 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "clk_enable" (rect 0 0 41 12)(font "Arial" ))
+		(text "clk_enable" (rect 21 43 62 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 1))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "reset" (rect 0 0 20 12)(font "Arial" ))
+		(text "reset" (rect 21 59 41 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 1))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "filter_in[11..0]" (rect 0 0 50 12)(font "Arial" ))
+		(text "filter_in[11..0]" (rect 21 75 71 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 208 32)
+		(output)
+		(text "filter_out[11..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "filter_out[11..0]" (rect 131 27 187 39)(font "Arial" ))
+		(line (pt 208 32)(pt 192 32)(line_width 3))
+	)
+	(parameter
+		"coeff1"
+		"1111111111111101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff2"
+		"1111111101000110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff3"
+		"1111111111110110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff4"
+		"0000000000000101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff5"
+		"0000000000010010"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff6"
+		"0000000000010001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff7"
+		"0000000000000100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff8"
+		"1111111111110111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff9"
+		"1111111111110100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff10"
+		"1111111111111011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff11"
+		"0000000000000001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff12"
+		"0000000000000000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff13"
+		"1111111111111011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff14"
+		"1111111111111101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff15"
+		"0000000000001011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff16"
+		"0000000000011001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff17"
+		"0000000000010100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff18"
+		"1111111111110111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff19"
+		"1111111111010101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff20"
+		"1111111111001101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff21"
+		"1111111111110010"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff22"
+		"0000000000101110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff23"
+		"0000000001010011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff24"
+		"0000000000111010"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff25"
+		"1111111111101001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff26"
+		"1111111110011100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff27"
+		"1111111110010100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff28"
+		"1111111111100011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff29"
+		"0000000001010101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff30"
+		"0000000010010001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff31"
+		"0000000001011111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff32"
+		"1111111111011101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff33"
+		"1111111101101100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff34"
+		"1111111101101000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff35"
+		"1111111111011010"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff36"
+		"0000000001101101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff37"
+		"0000000010110000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff38"
+		"0000000001101110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff39"
+		"1111111111011001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff40"
+		"1111111101100110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff41"
+		"1111111101101010"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff42"
+		"1111111111011100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff43"
+		"0000000001011110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff44"
+		"0000000010001101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff45"
+		"0000000001010000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff46"
+		"1111111111100111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff47"
+		"1111111110101000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff48"
+		"1111111110111001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff49"
+		"1111111111110011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff50"
+		"0000000000010101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff51"
+		"0000000000001001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff52"
+		"1111111111110100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff53"
+		"0000000000001011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff54"
+		"0000000001001000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff55"
+		"0000000001100111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff56"
+		"0000000000100001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff57"
+		"1111111110001011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff58"
+		"1111111100011100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff59"
+		"1111111101011000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff60"
+		"0000000001000110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff61"
+		"0000000101000011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff62"
+		"0000000101101101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff63"
+		"0000000001100101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff64"
+		"1111111011000111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff65"
+		"1111110111011001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff66"
+		"1111111010001001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff67"
+		"0000000010010001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff68"
+		"0000001001111011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff69"
+		"0000001010101001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff70"
+		"0000000010110100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff71"
+		"1111110111101000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff72"
+		"1111110001110001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff73"
+		"1111110110101000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff74"
+		"0000000011100001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff75"
+		"0000001110111100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff76"
+		"0000001111100111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff77"
+		"0000000100000001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff78"
+		"1111110100010100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff79"
+		"1111101100100110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff80"
+		"1111110011100000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff81"
+		"0000000100100110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff82"
+		"0000010011000111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff83"
+		"0000010011100101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff84"
+		"0000000100111100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff85"
+		"1111110001111000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff86"
+		"1111101000111101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff87"
+		"1111110001011011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff88"
+		"0000000101010001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff89"
+		"0000010101100100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff90"
+		"0000010101101111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff91"
+		"0000000101011001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff92"
+		"1111110000110101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff93"
+		"0111100111101001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff94"
+		"1111110000110101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff95"
+		"0000000101011001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff96"
+		"0000010101101111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff97"
+		"0000010101100100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff98"
+		"0000000101010001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff99"
+		"1111110001011011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff100"
+		"1111101000111101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff101"
+		"1111110001111000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff102"
+		"0000000100111100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff103"
+		"0000010011100101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff104"
+		"0000010011000111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff105"
+		"0000000100100110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff106"
+		"1111110011100000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff107"
+		"1111101100100110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff108"
+		"1111110100010100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff109"
+		"0000000100000001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff110"
+		"0000001111100111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff111"
+		"0000001110111100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff112"
+		"0000000011100001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff113"
+		"1111110110101000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff114"
+		"1111110001110001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff115"
+		"1111110111101000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff116"
+		"0000000010110100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff117"
+		"0000001010101001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff118"
+		"0000001001111011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff119"
+		"0000000010010001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff120"
+		"1111111010001001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff121"
+		"1111110111011001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff122"
+		"1111111011000111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff123"
+		"0000000001100101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff124"
+		"0000000101101101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff125"
+		"0000000101000011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff126"
+		"0000000001000110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff127"
+		"1111111101011000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff128"
+		"1111111100011100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff129"
+		"1111111110001011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff130"
+		"0000000000100001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff131"
+		"0000000001100111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff132"
+		"0000000001001000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff133"
+		"0000000000001011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff134"
+		"1111111111110100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff135"
+		"0000000000001001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff136"
+		"0000000000010101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff137"
+		"1111111111110011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff138"
+		"1111111110111001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff139"
+		"1111111110101000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff140"
+		"1111111111100111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff141"
+		"0000000001010000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff142"
+		"0000000010001101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff143"
+		"0000000001011110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff144"
+		"1111111111011100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff145"
+		"1111111101101010"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff146"
+		"1111111101100110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff147"
+		"1111111111011001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff148"
+		"0000000001101110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff149"
+		"0000000010110000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff150"
+		"0000000001101101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff151"
+		"1111111111011010"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff152"
+		"1111111101101000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff153"
+		"1111111101101100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff154"
+		"1111111111011101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff155"
+		"0000000001011111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff156"
+		"0000000010010001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff157"
+		"0000000001010101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff158"
+		"1111111111100011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff159"
+		"1111111110010100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff160"
+		"1111111110011100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff161"
+		"1111111111101001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff162"
+		"0000000000111010"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff163"
+		"0000000001010011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff164"
+		"0000000000101110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff165"
+		"1111111111110010"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff166"
+		"1111111111001101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff167"
+		"1111111111010101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff168"
+		"1111111111110111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff169"
+		"0000000000010100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff170"
+		"0000000000011001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff171"
+		"0000000000001011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff172"
+		"1111111111111101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff173"
+		"1111111111111011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff174"
+		"0000000000000000"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff175"
+		"0000000000000001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff176"
+		"1111111111111011"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff177"
+		"1111111111110100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff178"
+		"1111111111110111"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff179"
+		"0000000000000100"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff180"
+		"0000000000010001"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff181"
+		"0000000000010010"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff182"
+		"0000000000000101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff183"
+		"1111111111110110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff184"
+		"1111111101000110"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(parameter
+		"coeff185"
+		"1111111111111101"
+		""
+		(type "PARAMETER_SIGNED_BIN")	)
+	(drawing
+		(rectangle (rect 16 16 192 96)(line_width 1))
+	)
+	(annotation_block (parameter)(rect 224 -64 324 16))
+)

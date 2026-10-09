@@ -1,0 +1,16 @@
+Fitter Status : Successful - Fri Dec 15 16:11:57 2023
+Quartus Prime Version : 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+Revision Name : ADC_digitising
+Top-level Entity Name : ADC_digitising
+Family : Cyclone IV E
+Device : EP4CE22F17C6
+Timing Models : Final
+Total logic elements : 14,534 / 22,320 ( 65 % )
+    Total combinational functions : 13,130 / 22,320 ( 59 % )
+    Dedicated logic registers : 3,581 / 22,320 ( 16 % )
+Total registers : 3581
+Total pins : 13 / 154 ( 8 % )
+Total virtual pins : 0
+Total memory bits : 294,912 / 608,256 ( 48 % )
+Embedded Multiplier 9-bit elements : 2 / 132 ( 2 % )
+Total PLLs : 1 / 4 ( 25 % )
